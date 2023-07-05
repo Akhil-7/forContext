@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import ComponentA from './Component/ComponentA';
+import ComponentB from './Component/ComponentB';
+import ComponentC from './Component/ComponentC';
+import { UserProvider } from './Component/ContextB';
+import React from 'react';
+
+export const UserContext = React.createContext();
+export const ChannelContext = React.createContext();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	let username = 'LCC';
+	let place = 'EKM';
+	return (
+		<div>
+			{/* <ComponentA username={username} /> */}
+			
+			{/* <UserProvider value={username}>
+				<ComponentB />
+				<ComponentC />
+			</UserProvider> */}
+
+			<UserContext.Provider value={username}>
+				<ChannelContext.Provider value={place}>
+					<ComponentC />
+				</ChannelContext.Provider>
+			</UserContext.Provider>
+
+		</div>
+	);
 }
 
 export default App;
